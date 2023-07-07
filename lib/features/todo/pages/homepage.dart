@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_todo_riverpod/common/widgets/app_style.dart';
+import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -13,8 +14,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Todo with Rieverpod',
-        style: GoogleFonts.poppins(),),
+        child: MyText(
+          text: 'Todo with Rieverpod',
+          style: appStyle(26, Colors.blue, FontWeight.bold),
+        ),
       ),
     );
   }
