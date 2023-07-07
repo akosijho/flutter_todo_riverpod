@@ -1,6 +1,7 @@
 # flutter_todo_riverpod
 
-A new Flutter Todo app project using riverpod.
+A new Flutter Todo app project using riverpod 2.0 
+
 
 ## Getting Started
 
