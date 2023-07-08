@@ -5,6 +5,7 @@ import 'package:flutter_todo_riverpod/common/widgets/app_style.dart';
 import 'package:flutter_todo_riverpod/common/widgets/gap.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text_field.dart';
+import 'package:flutter_todo_riverpod/common/widgets/xpansion_tile.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -175,7 +176,24 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                       ],
                     ),
                   ),
-                )
+                ),
+                const Gap(
+                  height: 20,
+                ),
+                const XpansionTile(
+                  text: "Tomorrow's Task",
+                  text2: "Tomorrow's Task are shown here",
+                ),
+                const Gap(
+                  height: 20,
+                ),
+                XpansionTile(
+                  text: DateTime.now()
+                      .add(const Duration(days: 2))
+                      .toString()
+                      .substring(5, 10),
+                  text2: "Next day's task",
+                ),
               ],
             ),
           ),

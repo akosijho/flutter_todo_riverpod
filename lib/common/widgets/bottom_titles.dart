@@ -26,7 +26,7 @@ class BottomTitles extends StatelessWidget {
           children: [
             Consumer(builder: (context, ref, child) {
               return Container(
-                height: 80,
+                height: 56,
                 width: 5,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(AppConstants.kRadius),

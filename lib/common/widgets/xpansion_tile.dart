@@ -9,12 +9,12 @@ class XpansionTile extends StatelessWidget {
       required this.text2,
       this.onExpansionChanged,
       this.trailing,
-      required this.children});
+      this.children});
 
   final String text, text2;
   final void Function(bool)? onExpansionChanged;
   final Widget? trailing;
-  final List<Widget> children;
+  final List<Widget>? children;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class XpansionTile extends StatelessWidget {
             onExpansionChanged: onExpansionChanged,
             controlAffinity: ListTileControlAffinity.trailing,
             trailing: trailing,
-            children: children,
+            children: children ?? [],
           )),
     );
   }
