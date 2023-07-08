@@ -7,6 +7,7 @@ import 'package:flutter_todo_riverpod/common/widgets/gap.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_outlined_button.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text_field.dart';
+import 'package:flutter_todo_riverpod/features/auth/pages/otp_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -119,7 +120,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         backgroundColor:
                             MaterialStateProperty.all(AppConstants.kLight),
                         side: MaterialStateProperty.all(BorderSide.none)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) {
+                        return const OtpPage();
+                      }));
+                    },
                     child: MyText(
                       text: 'Send Code',
                       style:
