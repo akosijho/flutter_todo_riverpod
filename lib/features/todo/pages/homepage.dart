@@ -15,7 +15,10 @@ class MyHomePage extends ConsumerStatefulWidget {
   ConsumerState<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends ConsumerState<MyHomePage> {
+class _MyHomePageState extends ConsumerState<MyHomePage>
+    with TickerProviderStateMixin {
+  late final TabController _tabController =
+      TabController(length: 2, vsync: this);
   final TextEditingController _textEditingController = TextEditingController();
 
   @override
@@ -28,72 +31,154 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        automaticallyImplyLeading: false,
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(85),
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    MyText(
-                        text: 'Dashboard',
-                        style:
-                            appStyle(24, AppConstants.kLight, FontWeight.bold)),
-                    Container(
-                        height: 32.h,
-                        width: 32.h,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: AppConstants.kLight,
-                            borderRadius: BorderRadius.circular(9)),
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: const Icon(
-                            Icons.add,
-                            color: AppConstants.kBkDark,
-                          ),
-                        ))
-                  ],
+          backgroundColor: Colors.transparent,
+          automaticallyImplyLeading: false,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(85),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      MyText(
+                          text: 'Dashboard',
+                          style: appStyle(
+                              24, AppConstants.kLight, FontWeight.bold)),
+                      Container(
+                          height: 32.h,
+                          width: 32.h,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: AppConstants.kLight,
+                              borderRadius: BorderRadius.circular(9)),
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: const Icon(
+                              Icons.add,
+                              color: AppConstants.kBkDark,
+                            ),
+                          ))
+                    ],
+                  ),
                 ),
-              ),
-              const Gap(height: 16),
-              MyTextField(
-                hintText: "Search",
-                textEditingController: _textEditingController,
-                prefixIcon: IconButton(
-                  icon: const Icon(AntDesign.search1),
-                  onPressed: () {},
+                const Gap(height: 16),
+                MyTextField(
+                  hintText: "Search",
+                  textEditingController: _textEditingController,
+                  prefixIcon: IconButton(
+                    icon: const Icon(AntDesign.search1),
+                    onPressed: () {},
+                  ),
+                  suffixIcon: const Icon(FontAwesome.sliders),
                 ),
-                suffixIcon: const Icon(FontAwesome.sliders),
-              ),
-              const Gap(
-                height: 16,
-              )
-            ],
+                const Gap(
+                  height: 16,
+                )
+              ],
+            ),
           ),
         ),
-      ),
-      body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              MyText(
-                text: 'Todo with Rieverpod',
-                style: appStyle(26, AppConstants.kBlueLight, FontWeight.bold),
-              ),
-              const Gap(height: 56),
-              MyText(
-                text: 'Todo with Rieverpod',
-                style: appStyle(26, AppConstants.kBlueLight, FontWeight.bold),
-              ),
-            ]),
-      ),
-    );
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: ListView(
+              children: [
+                const Gap(
+                  height: 24,
+                ),
+                Row(
+                  children: [
+                    const Icon(
+                      FontAwesome.tasks,
+                      size: 20,
+                      color: AppConstants.kLight,
+                    ),
+                    const Gap(
+                      width: 8,
+                    ),
+                    MyText(
+                        text: "Today's Task",
+                        style:
+                            appStyle(18, AppConstants.kLight, FontWeight.bold))
+                  ],
+                ),
+                const Gap(
+                  height: 24,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(AppConstants.kRadius),
+                      color: AppConstants.kLight),
+                  child: TabBar(
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicator: BoxDecoration(
+                        color: AppConstants.kGreyDk,
+                        borderRadius:
+                            BorderRadius.circular(AppConstants.kRadius)),
+                    controller: _tabController,
+                    isScrollable: false,
+                    labelColor: AppConstants.kBlueLight,
+                    labelStyle:
+                        appStyle(24, AppConstants.kBlueLight, FontWeight.w700),
+                    unselectedLabelColor: AppConstants.kLight,
+                    tabs: [
+                      Tab(
+                        child: SizedBox(
+                          width: AppConstants.kWidth * 0.5,
+                          child: Center(
+                            child: MyText(
+                              text: 'Pending',
+                              style: appStyle(
+                                  16, AppConstants.kBkDark, FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Tab(
+                        child: Container(
+                          // padding: EdgeInsets.only(left: 30.w),
+                          width: AppConstants.kWidth * 0.5,
+                          child: Center(
+                            child: MyText(
+                              text: 'Completed',
+                              style: appStyle(
+                                  16, AppConstants.kBkDark, FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const Gap(
+                  height: 24,
+                ),
+                SizedBox(
+                  height: AppConstants.kHeight * 0.3,
+                  width: AppConstants.kWidth,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppConstants.kRadius),
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: [
+                        Container(
+                          color: AppConstants.kBkLight,
+                          height: AppConstants.kHeight * 0.3,
+                        ),
+                        Container(
+                          color: AppConstants.kBkLight,
+                          height: AppConstants.kHeight * 0.3,
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }
