@@ -16,4 +16,9 @@ class AppConstants {
   static const Color kYellow = Color(0xfff9f900);
   static const Color kBkLight = Color(0x58797777);
   static const Color kGryBk = Color(0xff202c33);
+
+  static const String _rootPath = 'assets/images/';
+  static const String todo = '${_rootPath}todo.png';
+  static const String bell = '${_rootPath}bell.pmg';
+  static const String notification = '{$_rootPath}notification.pmg';
 }

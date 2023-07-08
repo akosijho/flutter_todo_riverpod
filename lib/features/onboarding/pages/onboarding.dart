@@ -7,6 +7,7 @@ import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 import 'package:flutter_todo_riverpod/features/onboarding/widgets/page_one.dart';
 import 'package:flutter_todo_riverpod/features/onboarding/widgets/page_two.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -16,11 +17,11 @@ class OnBoarding extends StatefulWidget {
 }
 
 class _OnBoardingState extends State<OnBoarding> {
-  final PageController pageController = PageController();
+  final PageController _pageController = PageController();
 
   @override
   void dispose() {
-    pageController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -30,7 +31,7 @@ class _OnBoardingState extends State<OnBoarding> {
       body: Stack(
         children: [
           PageView(
-            controller: pageController,
+            controller: _pageController,
             physics: const AlwaysScrollableScrollPhysics(),
             children: const [
               PageOne(),
@@ -49,7 +50,11 @@ class _OnBoardingState extends State<OnBoarding> {
                       IconButton(
                         icon: const Icon(Ionicons.chevron_forward_circle,
                             size: 30, color: AppConstants.kLight),
-                        onPressed: () {},
+                        onPressed: () {
+                          _pageController.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeIn);
+                        },
                       ),
                       const Gap(
                         width: 8,
@@ -60,6 +65,22 @@ class _OnBoardingState extends State<OnBoarding> {
                               16, AppConstants.kLight, FontWeight.w500))
                     ],
                   ),
+                  GestureDetector(
+                    onTap: () {
+                      _pageController.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn);
+                    },
+                    child: SmoothPageIndicator(
+                      controller: _pageController,
+                      count: 2,
+                      effect: const WormEffect(
+                          dotColor: AppConstants.kYellow,
+                          dotHeight: 12,
+                          dotWidth: 16,
+                          spacing: 10),
+                    ),
+                  )
                 ],
               ),
             ),
