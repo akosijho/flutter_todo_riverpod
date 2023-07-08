@@ -6,6 +6,7 @@ class AppConstants {
 
   static double kWidth = 375.w;
   static double kHeight = 825.h;
+  static double kRadius = 12.h;
 
   static const Color kBkDark = Color(0xff2a2b2e);
   static const Color kLight = Color(0xffffffff);
