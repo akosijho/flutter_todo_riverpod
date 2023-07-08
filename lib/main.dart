@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Todo - Riverpod',
+            themeMode: ThemeMode.dark,
             theme: ThemeData(
                 scaffoldBackgroundColor: AppConstants.kBkDark,
                 primarySwatch: Colors.blue, useMaterial3: true),

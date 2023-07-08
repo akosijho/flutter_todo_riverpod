@@ -9,7 +9,7 @@ class PageTwo extends StatelessWidget {
     return Container(
       height: AppConstants.kHeight,
       width: AppConstants.kWidth,
-      color: AppConstants.kBlueLight,
+      color: AppConstants.kBkDark,
     );
   }
 }
