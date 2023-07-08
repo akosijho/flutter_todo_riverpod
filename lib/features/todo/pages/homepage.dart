@@ -138,7 +138,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                         ),
                       ),
                       Tab(
-                        child: Container(
+                        child: SizedBox(
                           // padding: EdgeInsets.only(left: 30.w),
                           width: AppConstants.kWidth * 0.5,
                           child: Center(
