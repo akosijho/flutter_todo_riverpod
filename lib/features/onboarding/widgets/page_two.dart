@@ -5,6 +5,7 @@ import 'package:flutter_todo_riverpod/common/widgets/app_style.dart';
 import 'package:flutter_todo_riverpod/common/widgets/gap.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_outlined_button.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
+import 'package:flutter_todo_riverpod/features/auth/pages/login_page.dart';
 
 class PageTwo extends StatelessWidget {
   const PageTwo({super.key});
@@ -27,7 +28,12 @@ class PageTwo extends StatelessWidget {
             height: 48,
           ),
           MyOutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (_) {
+                  return const LoginPage();
+                }));
+              },
               child: MyText(
                 text: 'Login with phone number',
                 style: appStyle(18, AppConstants.kLight, FontWeight.bold),
