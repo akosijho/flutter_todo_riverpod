@@ -180,6 +180,15 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                               TodoTile(
                                 start: "15:00",
                                 end: "17:00",
+                                switcher: Switch(
+                                    value: true,
+                                    activeColor: AppConstants.kBlueLight,
+                                    activeTrackColor: AppConstants.kBlueLight,
+                                    thumbIcon: MaterialStatePropertyAll(Icon(
+                                      Icons.check,
+                                      color: AppConstants.kBlueLight,
+                                    )),
+                                    onChanged: null),
                               )
                             ],
                           ),

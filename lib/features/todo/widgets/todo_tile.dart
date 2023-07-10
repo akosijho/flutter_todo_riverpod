@@ -15,12 +15,14 @@ class TodoTile extends StatelessWidget {
       this.start,
       this.end,
       this.editWidget,
-      this.onPressed});
+      this.onPressed,
+      this.switcher});
 
   final Color? color;
   final String? title, description, start, end;
   final Widget? editWidget;
   final void Function()? onPressed;
+  final Widget? switcher;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class TodoTile extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(8.h),
                       child: SizedBox(
-                        // width: AppConstants.kWidth,
+                        // width: AppConstants.kWidth*0.6,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -99,13 +101,17 @@ class TodoTile extends StatelessWidget {
                                       child: editWidget,
                                     ),
                                     const Gap(
-                                      width: 20,
+                                      width: 32,
                                     ),
                                     IconButton(
                                         onPressed: onPressed,
                                         icon: const Icon(MaterialCommunityIcons
                                             .delete_circle))
                                   ],
+                                ),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  child: switcher,
                                 )
                               ],
                             )
