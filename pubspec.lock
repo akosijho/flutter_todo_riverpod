@@ -641,7 +641,7 @@ packages:
     source: hosted
     version: "2.1.1"
   riverpod_generator:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: riverpod_generator
       sha256: cd0595de57ccf5d944ff4b0f68289e11ac6a2eff1e3dfd1d884a43f6f3bcee5e
@@ -649,7 +649,7 @@ packages:
     source: hosted
     version: "2.2.3"
   riverpod_lint:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: riverpod_lint
       sha256: "043ff016011be4c5887b3239bfbca05d284bdb68db0a5363cee0242b7567e250"
