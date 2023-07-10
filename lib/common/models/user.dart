@@ -10,9 +10,8 @@ part 'user.g.dart';
 @freezed
 class User with _$User {
   const factory User({
-    required String firstName,
-    required String lastName,
-    required int age,
+    required int id,
+    @Default(false) bool isVerified
   }) = _User;
 
   factory User.fromJson(Map<String, Object?> json)
