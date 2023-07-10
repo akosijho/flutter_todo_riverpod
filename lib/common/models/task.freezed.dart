@@ -23,7 +23,7 @@ mixin _$Task {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  bool get isCompleted => throw _privateConstructorUsedError;
+  int get isCompleted => throw _privateConstructorUsedError;
   String get startTime => throw _privateConstructorUsedError;
   String get endTime => throw _privateConstructorUsedError;
   int get remind => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $TaskCopyWith<$Res> {
       {int id,
       String title,
       String description,
-      bool isCompleted,
+      int isCompleted,
       String startTime,
       String endTime,
       int remind,
@@ -88,7 +88,7 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
       isCompleted: null == isCompleted
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
       startTime: null == startTime
           ? _value.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
@@ -119,7 +119,7 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
       {int id,
       String title,
       String description,
-      bool isCompleted,
+      int isCompleted,
       String startTime,
       String endTime,
       int remind,
@@ -160,7 +160,7 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
       isCompleted: null == isCompleted
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
       startTime: null == startTime
           ? _value.startTime
           : startTime // ignore: cast_nullable_to_non_nullable
@@ -188,7 +188,7 @@ class _$_Task implements _Task {
       {required this.id,
       required this.title,
       required this.description,
-      this.isCompleted = false,
+      required this.isCompleted,
       required this.startTime,
       required this.endTime,
       required this.remind,
@@ -203,8 +203,7 @@ class _$_Task implements _Task {
   @override
   final String description;
   @override
-  @JsonKey()
-  final bool isCompleted;
+  final int isCompleted;
   @override
   final String startTime;
   @override
@@ -261,7 +260,7 @@ abstract class _Task implements Task {
       {required final int id,
       required final String title,
       required final String description,
-      final bool isCompleted,
+      required final int isCompleted,
       required final String startTime,
       required final String endTime,
       required final int remind,
@@ -276,7 +275,7 @@ abstract class _Task implements Task {
   @override
   String get description;
   @override
-  bool get isCompleted;
+  int get isCompleted;
   @override
   String get startTime;
   @override

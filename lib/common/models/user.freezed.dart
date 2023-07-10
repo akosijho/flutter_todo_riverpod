@@ -21,7 +21,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$User {
   int get id => throw _privateConstructorUsedError;
-  bool get isVerified => throw _privateConstructorUsedError;
+  int get isVerified => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +33,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({int id, bool isVerified});
+  $Res call({int id, int isVerified});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       isVerified: null == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
     ) as $Val);
   }
 }
@@ -71,7 +71,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$_UserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, bool isVerified});
+  $Res call({int id, int isVerified});
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
       isVerified: null == isVerified
           ? _value.isVerified
           : isVerified // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as int,
     ));
   }
 }
@@ -102,15 +102,14 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 /// @nodoc
 @JsonSerializable()
 class _$_User with DiagnosticableTreeMixin implements _User {
-  const _$_User({required this.id, this.isVerified = false});
+  const _$_User({required this.id, required this.isVerified});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
   final int id;
   @override
-  @JsonKey()
-  final bool isVerified;
+  final int isVerified;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -155,14 +154,15 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 }
 
 abstract class _User implements User {
-  const factory _User({required final int id, final bool isVerified}) = _$_User;
+  const factory _User({required final int id, required final int isVerified}) =
+      _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
   int get id;
   @override
-  bool get isVerified;
+  int get isVerified;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

@@ -10,7 +10,7 @@ _$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
       id: json['id'] as int,
       title: json['title'] as String,
       description: json['description'] as String,
-      isCompleted: json['isCompleted'] as bool? ?? false,
+      isCompleted: json['isCompleted'] as int,
       startTime: json['startTime'] as String,
       endTime: json['endTime'] as String,
       remind: json['remind'] as int,

@@ -10,7 +10,7 @@ class Task with _$Task {
     required int id,
     required String title,
     required String description,
-    @Default(false) bool isCompleted,
+    required int isCompleted,
     required String startTime,
     required String endTime,
     required int remind,

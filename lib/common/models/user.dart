@@ -11,7 +11,7 @@ part 'user.g.dart';
 class User with _$User {
   const factory User({
     required int id,
-    @Default(false) bool isVerified
+    required int isVerified
   }) = _User;
 
   factory User.fromJson(Map<String, Object?> json)
