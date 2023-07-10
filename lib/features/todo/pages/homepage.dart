@@ -6,6 +6,7 @@ import 'package:flutter_todo_riverpod/common/widgets/gap.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text_field.dart';
 import 'package:flutter_todo_riverpod/common/widgets/xpansion_tile.dart';
+import 'package:flutter_todo_riverpod/features/todo/controllers/xpansion_provider.dart';
 import 'package:flutter_todo_riverpod/features/todo/widgets/todo_tile.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -210,9 +211,44 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                 const Gap(
                   height: 20,
                 ),
-                const XpansionTile(
+                XpansionTile(
                   text: "Tomorrow's Task",
                   text2: "Tomorrow's Task are shown here",
+                  trailing: Padding(
+                    padding: EdgeInsets.only(right: 16.0.w),
+                    child: ref.watch(xpansionStateProvider)
+                        ? const Icon(
+                            AntDesign.circledown,
+                            color: AppConstants.kLight,
+                          )
+                        : const Icon(
+                            AntDesign.closecircleo,
+                            color: AppConstants.kLight,
+                          ),
+                  ),
+                  onExpansionChanged: (bool expanded) {
+                    ref
+                        .read(xpansionStateProvider.notifier)
+                        .setStart(!expanded);
+                  },
+                  children: const [
+                    TodoTile(
+                      start: "15:00",
+                      end: "17:00",
+                      /*
+                                * compare whether task is complete or pending
+                                * */
+                      switcher: Switch(
+                          value: true,
+                          activeColor: AppConstants.kBlueLight,
+                          activeTrackColor: AppConstants.kBlueLight,
+                          thumbIcon: MaterialStatePropertyAll(Icon(
+                            Icons.check,
+                            color: AppConstants.kBlueLight,
+                          )),
+                          onChanged: null),
+                    )
+                  ],
                 ),
                 const Gap(
                   height: 20,
