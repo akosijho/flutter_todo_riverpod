@@ -259,6 +259,41 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                       .toString()
                       .substring(5, 10),
                   text2: "Next day's task",
+                  trailing: Padding(
+                    padding: EdgeInsets.only(right: 16.0.w),
+                    child: ref.watch(xpansionStateProvider)
+                        ? const Icon(
+                            AntDesign.circledown,
+                            color: AppConstants.kLight,
+                          )
+                        : const Icon(
+                            AntDesign.closecircleo,
+                            color: AppConstants.kLight,
+                          ),
+                  ),
+                  onExpansionChanged: (bool expanded) {
+                    ref
+                        .read(xpansionStateProvider.notifier)
+                        .setStart(!expanded);
+                  },
+                  children: const [
+                    TodoTile(
+                      start: "15:00",
+                      end: "17:00",
+                      /*
+                                * compare whether task is complete or pending
+                                * */
+                      switcher: Switch(
+                          value: true,
+                          activeColor: AppConstants.kBlueLight,
+                          activeTrackColor: AppConstants.kBlueLight,
+                          thumbIcon: MaterialStatePropertyAll(Icon(
+                            Icons.check,
+                            color: AppConstants.kBlueLight,
+                          )),
+                          onChanged: null),
+                    )
+                  ],
                 ),
               ],
             ),
