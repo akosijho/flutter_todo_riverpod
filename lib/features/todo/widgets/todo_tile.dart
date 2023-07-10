@@ -104,9 +104,12 @@ class TodoTile extends StatelessWidget {
                                       width: 32,
                                     ),
                                     IconButton(
-                                        onPressed: onPressed,
-                                        icon: const Icon(MaterialCommunityIcons
-                                            .delete_circle))
+                                      onPressed: onPressed,
+                                      icon: const Icon(
+                                        MaterialCommunityIcons.delete_circle,
+                                        color: AppConstants.kGryBk,
+                                      ),
+                                    )
                                   ],
                                 ),
                                 Container(
