@@ -180,6 +180,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                               TodoTile(
                                 start: "15:00",
                                 end: "17:00",
+                                /*
+                                * compare whether task is complete or pending
+                                * */
                                 switcher: Switch(
                                     value: true,
                                     activeColor: AppConstants.kBlueLight,
