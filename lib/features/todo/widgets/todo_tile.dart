@@ -53,7 +53,7 @@ class TodoTile extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.all(8.h),
                       child: SizedBox(
-                        width: AppConstants.kWidth,
+                        // width: AppConstants.kWidth,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -68,9 +68,9 @@ class TodoTile extends StatelessWidget {
                                 text: description ?? 'Task Title',
                                 style: appStyle(
                                     12, AppConstants.kLight, FontWeight.bold)),
-                            const Gap(
-                              height: 12,
-                            ),
+                            // const Gap(
+                            //   height: 4,
+                            // ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -103,7 +103,7 @@ class TodoTile extends StatelessWidget {
                                     ),
                                     IconButton(
                                         onPressed: onPressed,
-                                        icon: Icon(MaterialCommunityIcons
+                                        icon: const Icon(MaterialCommunityIcons
                                             .delete_circle))
                                   ],
                                 )

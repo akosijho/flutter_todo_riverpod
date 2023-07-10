@@ -6,6 +6,7 @@ import 'package:flutter_todo_riverpod/common/widgets/gap.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text_field.dart';
 import 'package:flutter_todo_riverpod/common/widgets/xpansion_tile.dart';
+import 'package:flutter_todo_riverpod/features/todo/widgets/todo_tile.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -157,6 +158,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                 const Gap(
                   height: 24,
                 ),
+                /*
+                * list of tasks
+                * */
                 SizedBox(
                   height: AppConstants.kHeight * 0.3,
                   width: AppConstants.kWidth,
@@ -165,10 +169,24 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                     child: TabBarView(
                       controller: _tabController,
                       children: [
+                        /*
+                        * Pending tasks list
+                        * */
                         Container(
                           color: AppConstants.kBkLight,
                           height: AppConstants.kHeight * 0.3,
+                          child: ListView(
+                            children: const [
+                              TodoTile(
+                                start: "15:00",
+                                end: "17:00",
+                              )
+                            ],
+                          ),
                         ),
+                        /*
+                        * completed tasks list
+                        * */
                         Container(
                           color: AppConstants.kBkLight,
                           height: AppConstants.kHeight * 0.3,
