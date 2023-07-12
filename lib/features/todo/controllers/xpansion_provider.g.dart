@@ -22,7 +22,7 @@ final xpansionStateProvider =
 );
 
 typedef _$XpansionState = AutoDisposeNotifier<bool>;
-String _$xpansionState0Hash() => r'2f7e717bc5a47b9f0bbbaddb04965ef58c51655e';
+String _$xpansionState0Hash() => r'd2be90254658fc3220eef0926ede3f37d124fa9e';
 
 /// See also [XpansionState0].
 @ProviderFor(XpansionState0)
