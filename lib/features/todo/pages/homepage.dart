@@ -7,6 +7,7 @@ import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text_field.dart';
 import 'package:flutter_todo_riverpod/common/widgets/xpansion_tile.dart';
 import 'package:flutter_todo_riverpod/features/todo/controllers/xpansion_provider.dart';
+import 'package:flutter_todo_riverpod/features/todo/pages/add_task.dart';
 import 'package:flutter_todo_riverpod/features/todo/widgets/todo_tile.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -58,7 +59,12 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                               color: AppConstants.kLight,
                               borderRadius: BorderRadius.circular(9)),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (_) {
+                                return AddTask();
+                              }));
+                            },
                             child: const Icon(
                               Icons.add,
                               color: AppConstants.kBkDark,
