@@ -7,9 +7,10 @@ part 'task.g.dart';
 @freezed
 class Task with _$Task {
   const factory Task({
-    required int id,
+    int? id,
     required String title,
     required String description,
+    required String date,
     required int isCompleted,
     required String startTime,
     required String endTime,

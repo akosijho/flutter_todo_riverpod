@@ -7,9 +7,10 @@ part of 'task.dart';
 // **************************************************************************
 
 _$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
-      id: json['id'] as int,
+      id: json['id'] as int?,
       title: json['title'] as String,
       description: json['description'] as String,
+      date: json['date'] as String,
       isCompleted: json['isCompleted'] as int,
       startTime: json['startTime'] as String,
       endTime: json['endTime'] as String,
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$_TaskToJson(_$_Task instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,
+      'date': instance.date,
       'isCompleted': instance.isCompleted,
       'startTime': instance.startTime,
       'endTime': instance.endTime,
