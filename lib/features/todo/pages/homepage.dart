@@ -77,9 +77,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                   ),
                   suffixIcon: const Icon(FontAwesome.sliders),
                 ),
-                const Gap(
-                  height: 16,
-                )
+                // const Gap(
+                //   height: 16,
+                // )
               ],
             ),
           ),
@@ -261,7 +261,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                   text2: "Next day's task",
                   trailing: Padding(
                     padding: EdgeInsets.only(right: 16.0.w),
-                    child: ref.watch(xpansionStateProvider)
+                    child: ref.watch(xpansionState0Provider)
                         ? const Icon(
                             AntDesign.circledown,
                             color: AppConstants.kLight,
@@ -273,7 +273,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                   ),
                   onExpansionChanged: (bool expanded) {
                     ref
-                        .read(xpansionStateProvider.notifier)
+                        .read(xpansionState0Provider.notifier)
                         .setStart(!expanded);
                   },
                   children: const [
@@ -285,7 +285,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                                 * */
                       switcher: Switch(
                           value: true,
-                          activeColor: AppConstants.kBlueLight,
+                          activeColor: AppConstants.kLight,
                           activeTrackColor: AppConstants.kBlueLight,
                           thumbIcon: MaterialStatePropertyAll(Icon(
                             Icons.check,
