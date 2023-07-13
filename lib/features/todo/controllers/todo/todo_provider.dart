@@ -1,5 +1,6 @@
 import 'package:flutter_todo_riverpod/common/helpers/db_helper.dart';
 import 'package:flutter_todo_riverpod/common/models/task.dart';
+import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'todo_provider.g.dart';
@@ -42,7 +43,7 @@ class TodoState extends _$TodoState {
 
   String getToday() {
     DateTime today = DateTime.now();
-    return today.toString().substring(0, 10);
+    return DateFormat.yMMMMd().format(today);
   }
 
   String getTomorrow() {

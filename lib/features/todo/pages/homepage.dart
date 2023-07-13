@@ -6,8 +6,10 @@ import 'package:flutter_todo_riverpod/common/widgets/gap.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text_field.dart';
 import 'package:flutter_todo_riverpod/common/widgets/xpansion_tile.dart';
+import 'package:flutter_todo_riverpod/features/todo/controllers/todo/todo_provider.dart';
 import 'package:flutter_todo_riverpod/features/todo/controllers/xpansion_provider.dart';
 import 'package:flutter_todo_riverpod/features/todo/pages/add_task.dart';
+import 'package:flutter_todo_riverpod/features/todo/pages/widgets/todays_task.dart';
 import 'package:flutter_todo_riverpod/features/todo/widgets/todo_tile.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -32,9 +34,15 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    ref.watch(todoStateProvider.notifier).refresh();
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
           backgroundColor: Colors.transparent,
           automaticallyImplyLeading: false,
           bottom: PreferredSize(
@@ -62,8 +70,8 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                             onTap: () {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (_) {
-                                return AddTask();
-                              }));
+                                    return AddTask();
+                                  }));
                             },
                             child: const Icon(
                               Icons.add,
@@ -111,7 +119,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                     MyText(
                         text: "Today's Task",
                         style:
-                            appStyle(18, AppConstants.kLight, FontWeight.bold))
+                        appStyle(18, AppConstants.kLight, FontWeight.bold))
                   ],
                 ),
                 const Gap(
@@ -126,12 +134,12 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                     indicator: BoxDecoration(
                         color: AppConstants.kGreyDk,
                         borderRadius:
-                            BorderRadius.circular(AppConstants.kRadius)),
+                        BorderRadius.circular(AppConstants.kRadius)),
                     controller: _tabController,
                     isScrollable: false,
                     labelColor: AppConstants.kBlueLight,
                     labelStyle:
-                        appStyle(24, AppConstants.kBlueLight, FontWeight.w700),
+                    appStyle(24, AppConstants.kBlueLight, FontWeight.w700),
                     unselectedLabelColor: AppConstants.kLight,
                     tabs: [
                       Tab(
@@ -180,29 +188,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                         * Pending tasks list
                         * */
                         Container(
-                          color: AppConstants.kBkLight,
-                          height: AppConstants.kHeight * 0.3,
-                          child: ListView(
-                            children: const [
-                              TodoTile(
-                                start: "15:00",
-                                end: "17:00",
-                                /*
-                                * compare whether task is complete or pending
-                                * */
-                                switcher: Switch(
-                                    value: true,
-                                    activeColor: AppConstants.kBlueLight,
-                                    activeTrackColor: AppConstants.kBlueLight,
-                                    thumbIcon: MaterialStatePropertyAll(Icon(
-                                      Icons.check,
-                                      color: AppConstants.kBlueLight,
-                                    )),
-                                    onChanged: null),
-                              )
-                            ],
-                          ),
-                        ),
+                            color: AppConstants.kBkLight,
+                            height: AppConstants.kHeight * 0.3,
+                            child: const TodaysTask()),
                         /*
                         * completed tasks list
                         * */
@@ -224,13 +212,13 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                     padding: EdgeInsets.only(right: 16.0.w),
                     child: ref.watch(xpansionStateProvider)
                         ? const Icon(
-                            AntDesign.circledown,
-                            color: AppConstants.kLight,
-                          )
+                      AntDesign.circledown,
+                      color: AppConstants.kLight,
+                    )
                         : const Icon(
-                            AntDesign.closecircleo,
-                            color: AppConstants.kLight,
-                          ),
+                      AntDesign.closecircleo,
+                      color: AppConstants.kLight,
+                    ),
                   ),
                   onExpansionChanged: (bool expanded) {
                     ref
@@ -269,13 +257,13 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                     padding: EdgeInsets.only(right: 16.0.w),
                     child: ref.watch(xpansionState0Provider)
                         ? const Icon(
-                            AntDesign.circledown,
-                            color: AppConstants.kLight,
-                          )
+                      AntDesign.circledown,
+                      color: AppConstants.kLight,
+                    )
                         : const Icon(
-                            AntDesign.closecircleo,
-                            color: AppConstants.kLight,
-                          ),
+                      AntDesign.closecircleo,
+                      color: AppConstants.kLight,
+                    ),
                   ),
                   onExpansionChanged: (bool expanded) {
                     ref

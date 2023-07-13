@@ -101,7 +101,7 @@ class TodoTile extends StatelessWidget {
                                       child: editWidget,
                                     ),
                                     const Gap(
-                                      width: 32,
+                                      width: 48,
                                     ),
                                     IconButton(
                                       onPressed: onPressed,
