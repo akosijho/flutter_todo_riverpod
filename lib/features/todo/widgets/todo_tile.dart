@@ -15,13 +15,13 @@ class TodoTile extends StatelessWidget {
       this.start,
       this.end,
       this.editWidget,
-      this.onPressed,
+      this.delete,
       this.switcher});
 
   final Color? color;
   final String? title, description, start, end;
   final Widget? editWidget;
-  final void Function()? onPressed;
+  final void Function()? delete;
   final Widget? switcher;
 
   @override
@@ -101,10 +101,10 @@ class TodoTile extends StatelessWidget {
                                       child: editWidget,
                                     ),
                                     const Gap(
-                                      width: 48,
+                                      width: 24,
                                     ),
                                     IconButton(
-                                      onPressed: onPressed,
+                                      onPressed: delete,
                                       icon: const Icon(
                                         MaterialCommunityIcons.delete_circle,
                                         color: AppConstants.kGryBk,

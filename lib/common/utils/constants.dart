@@ -22,4 +22,13 @@ class AppConstants {
   static const String todo = '${_rootPath}todo.png';
   static const String bell = '${_rootPath}bell.pmg';
   static const String notification = '{$_rootPath}notification.pmg';
+
+  static const List<Color> colors = [
+    Color(0xffd80000),
+    Color(0xff027eb5),
+    Color(0xff20a31e),
+    Color(0xfff9f900),
+    Color(0xff79017b),
+    Color(0xffffffff),
+  ];
 }

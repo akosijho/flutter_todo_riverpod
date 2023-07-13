@@ -5,6 +5,7 @@ import 'package:flutter_todo_riverpod/common/utils/constants.dart';
 import 'package:flutter_todo_riverpod/common/widgets/gap.dart';
 import 'package:flutter_todo_riverpod/features/todo/controllers/todo/todo_provider.dart';
 import 'package:flutter_todo_riverpod/features/todo/widgets/todo_tile.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class TodaysTask extends ConsumerWidget {
   const TodaysTask({super.key});
@@ -24,21 +25,35 @@ class TodaysTask extends ConsumerWidget {
             ),
         itemBuilder: (context, index) {
           final Task task = todayTasksList[index];
+          bool isCompleted =
+              ref.read(todoStateProvider.notifier).getStatus(task);
+          Color color = ref.read(todoStateProvider.notifier).getRandomColor();
           return TodoTile(
             title: task.title,
-            color: AppConstants.kGreen,
+            color: color,
             description: task.description,
             start: task.startTime,
             end: task.endTime,
-            switcher:  const Switch(
-              value: true,
-              activeColor: AppConstants.kBlueLight,
-              activeTrackColor: AppConstants.kBlueLight,
-              thumbIcon: MaterialStatePropertyAll(Icon(
-                Icons.check,
-                color: AppConstants.kBlueLight,
-              )),
-              onChanged: null),
+            switcher: Switch(
+                value: isCompleted,
+                activeColor: AppConstants.kBlueLight,
+                activeTrackColor: AppConstants.kBlueLight,
+                inactiveThumbColor: Colors.transparent,
+                thumbIcon: isCompleted
+                    ? const MaterialStatePropertyAll(Icon(
+                        Icons.check,
+                        color: AppConstants.kBlueLight,
+                      ))
+                    : null,
+                onChanged: null),
+            delete: () {
+              ref.read(todoStateProvider.notifier).deleteTask(task.id ?? 0);
+            },
+            editWidget: IconButton(
+              onPressed: () {},
+              icon: const Icon(MaterialCommunityIcons.circle_edit_outline,
+              color: Colors.white,),
+            ),
           );
         });
   }

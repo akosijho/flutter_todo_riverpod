@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter_todo_riverpod/common/helpers/db_helper.dart';
 import 'package:flutter_todo_riverpod/common/models/task.dart';
+import 'package:flutter_todo_riverpod/common/utils/constants.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -71,5 +74,11 @@ class TodoState extends _$TodoState {
       isComplete = true;
     }
     return isComplete;
+  }
+
+  dynamic getRandomColor(){
+    Random random = Random();
+    int randomIndex = random.nextInt(AppConstants.colors.length);
+    return AppConstants.colors[randomIndex];
   }
 }
