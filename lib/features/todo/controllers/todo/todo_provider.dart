@@ -51,7 +51,7 @@ class TodoState extends _$TodoState {
 
   String getTomorrow() {
     DateTime tomorrow = DateTime.now().add(const Duration(days: 1));
-    return tomorrow.toString().substring(0, 10);
+    return DateFormat.yMMMMd().format(tomorrow);
   }
 
   List<String> last30() {
@@ -61,7 +61,7 @@ class TodoState extends _$TodoState {
     List<String> dates = [];
     for (int i = 0; i < 30; i++) {
       dates.add(
-          monthAgo.add(const Duration(days: 1)).toString().substring(0, 10));
+          DateFormat.yMMMMd().format(monthAgo.add(const Duration(days: 1))));
     }
     return dates;
   }
