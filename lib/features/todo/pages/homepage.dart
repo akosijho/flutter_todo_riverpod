@@ -7,7 +7,7 @@ import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text_field.dart';
 import 'package:flutter_todo_riverpod/features/todo/controllers/todo/todo_provider.dart';
 import 'package:flutter_todo_riverpod/features/todo/pages/add_task.dart';
-import 'package:flutter_todo_riverpod/features/todo/pages/widgets/todays_task.dart';
+import 'package:flutter_todo_riverpod/features/todo/widgets/todays_task.dart';
 import 'package:flutter_todo_riverpod/features/todo/widgets/next_day_task.dart';
 import 'package:flutter_todo_riverpod/features/todo/widgets/tomorrows_task.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
