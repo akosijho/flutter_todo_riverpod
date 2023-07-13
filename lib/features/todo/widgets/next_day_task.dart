@@ -8,37 +8,42 @@ import 'package:flutter_todo_riverpod/features/todo/controllers/xpansion_provide
 import 'package:flutter_todo_riverpod/features/todo/widgets/todo_tile.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-class TomorrowsTask extends ConsumerWidget {
-  const TomorrowsTask({super.key});
+class NextDayTasks extends ConsumerWidget {
+  const NextDayTasks({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final todos = ref.watch(todoStateProvider);
-    String tomorrow = ref.read(todoStateProvider.notifier).getTomorrow();
+    String tomorrow = ref.read(todoStateProvider.notifier).getDayAfterTomorrow();
     final colors = ref.read(todoStateProvider.notifier).getRandomColor();
-    var tommorrowsTask =
-        todos.where((element) => element.date.contains(tomorrow)).toList();
-    return XpansionTile(
-        text: "Tomorrow's Task",
-        text2: "Tomorrow's Task are shown here",
+    var dayAfterTomorrowTasks =
+    todos.where((element) => element.date.contains(tomorrow)).toList();
+    return  XpansionTile(
+        text: DateTime.now()
+            .add(const Duration(days: 2))
+            .toString()
+            .substring(5, 10),
+        text2: "Next day's task",
         trailing: Padding(
           padding: EdgeInsets.only(right: 16.0.w),
-          child: ref.watch(xpansionStateProvider)
+          child: ref.watch(xpansionState0Provider)
               ? const Icon(
-                  AntDesign.circledown,
-                  color: AppConstants.kLight,
-                )
+            AntDesign.circledown,
+            color: AppConstants.kLight,
+          )
               : const Icon(
-                  AntDesign.closecircleo,
-                  color: AppConstants.kLight,
-                ),
+            AntDesign.closecircleo,
+            color: AppConstants.kLight,
+          ),
         ),
         onExpansionChanged: (bool expanded) {
-          ref.read(xpansionStateProvider.notifier).setStart(!expanded);
+          ref
+              .read(xpansionState0Provider.notifier)
+              .setStart(!expanded);
         },
-      children: tommorrowsTask
-          .map((e) =>
-          TodoTile(
+        children: dayAfterTomorrowTasks
+            .map((e) =>
+            TodoTile(
               title: e.title,
               description: e.description,
               start: e.startTime,
@@ -48,11 +53,11 @@ class TomorrowsTask extends ConsumerWidget {
                 ref.read(todoStateProvider.notifier).deleteTask(e.id ?? 0);
               },
               editWidget: IconButton(
-              onPressed: () {},
-        icon: const Icon(MaterialCommunityIcons.circle_edit_outline,
-          color: Colors.white,),
-      ),
-                ))
+                onPressed: () {},
+                icon: const Icon(MaterialCommunityIcons.circle_edit_outline,
+                  color: Colors.white,),
+              ),
+            ))
             .toList());
   }
 }
