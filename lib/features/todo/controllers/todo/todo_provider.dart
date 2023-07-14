@@ -25,10 +25,8 @@ class TodoState extends _$TodoState {
     refresh();
   }
 
-  void updateTask(int id, String title, String description, int isCompleted,
-      String date, String startTime, String endTime) async {
-    await DBHelper.updateItem(
-        id, title, description, isCompleted, date, startTime, endTime);
+  void updateTask(Task task) async {
+    await DBHelper.updateItem(task);
     refresh();
   }
 
@@ -39,8 +37,16 @@ class TodoState extends _$TodoState {
 
   Future<void> markCompleted(int id, String title, String description,
       int isCompleted, String date, String startTime, String endTime) async {
-    await DBHelper.updateItem(
-        id, title, description, 1, date, startTime, endTime);
+    await DBHelper.updateItem(Task(
+        id: id,
+        title: title,
+        description: description,
+        isCompleted: 1,
+        date: date,
+        startTime: startTime,
+        endTime: endTime,
+        remind: 0,
+        repeat: 'yes'));
     refresh();
   }
 

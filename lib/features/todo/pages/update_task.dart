@@ -13,29 +13,42 @@ import 'package:flutter_todo_riverpod/features/todo/controllers/todo/todo_provid
 import 'package:flutter_todo_riverpod/features/todo/widgets/my_material_button.dart';
 import 'package:intl/intl.dart';
 
-class AddTask extends ConsumerStatefulWidget {
-  const AddTask({super.key});
+class UpdateTask extends ConsumerStatefulWidget {
+  const UpdateTask(this.task, {super.key});
+
+  final Task task;
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AddTaskState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _UpdateTaskState();
 }
 
-class _AddTaskState extends ConsumerState<AddTask> {
+class _UpdateTaskState extends ConsumerState<UpdateTask> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  String scheduleDate = '';
+  String startTime = '';
+  String endTime = '';
+
+
+  @override
+  void initState() {
+    titleController.text = widget.task.title;
+    descriptionController.text = widget.task.description;
+    scheduleDate = widget.task.date;
+    startTime = widget.task.startTime;
+    endTime = widget.task.endTime;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    String scheduleDate = ref.watch(dateStateProvider);
-    String startTime = ref.watch(startTimeProvider);
-    String endTime = ref.watch(endTimeProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppConstants.kLight),
         title: Text(
-          'Add Task',
+          'Update Task',
           style: appStyle(24, AppConstants.kLight, FontWeight.bold),
         ),
       ),
@@ -133,26 +146,26 @@ class _AddTaskState extends ConsumerState<AddTask> {
                       scheduleDate.isNotEmpty &&
                       startTime.isNotEmpty &&
                       endTime.isNotEmpty) {
-                    Task task = Task(
+                    ref.read(todoStateProvider.notifier).updateTask(Task(
+                      id: widget.task.id,
                       title: titleController.text,
                       description: descriptionController.text,
                       date: scheduleDate,
                       startTime: startTime,
                       endTime: endTime,
-                      isCompleted: 0,
-                      remind: 0,
-                      repeat: 'yes',
-                    );
-                    ref.read(todoStateProvider.notifier).addTask(task);
+                      isCompleted: widget.task.isCompleted,
+                      remind: widget.task.remind,
+                      repeat: widget.task.repeat,
+                    ));
                     ref.read(dateStateProvider.notifier).setDate('');
                     ref.read(startTimeProvider.notifier).setStart('');
                     ref.read(endTimeProvider.notifier).setStart('');
                     Navigator.pop(context);
-                  }else{
+                  } else {
                     print('Failed to add task');
                   }
                 },
-                text: 'Submit',
+                text: 'Update Task',
                 textStyle: appStyle(18, AppConstants.kLight, FontWeight.bold),
                 buttonColor: AppConstants.kGreen),
             const Gap(

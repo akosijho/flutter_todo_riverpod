@@ -93,21 +93,18 @@ class DBHelper {
     return db.query('users', where: 'id = ?', whereArgs: [id], limit: 1);
   }
 
-  static Future<int> updateItem(int id, String title, String description,
-      int isCompleted, String date, String startTime, String endTime) async {
+  static Future<int> updateItem(Task task) async {
     final db = await DBHelper.db();
 
-    final data = {
-      'title': title,
-      'description': description,
-      'isCompleted': isCompleted,
-      'date': date,
-      'startTime': startTime,
-      'endTime': endTime,
-    };
-
     final results =
-        await db.update('todos', data, where: 'id = ?', whereArgs: [id]);
+    await db.update('todos', {
+      'title': task.title,
+      'description': task.description,
+      'isCompleted': task.isCompleted,
+      'date': task.date,
+      'startTime': task.startTime,
+      'endTime': task.endTime,
+    }, where: 'id = ?', whereArgs: [task.id]);
 
     return results;
   }
