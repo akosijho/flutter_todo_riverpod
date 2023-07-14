@@ -12,7 +12,7 @@ class TodaysTask extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<Task> tasksList = ref.read(todoStateProvider);
+    List<Task> tasksList = ref.watch(todoStateProvider);
     String today = ref.watch(todoStateProvider.notifier).getToday();
     List<Task> todayTasksList = tasksList
         .where((element) =>
@@ -45,14 +45,25 @@ class TodaysTask extends ConsumerWidget {
                         color: AppConstants.kBlueLight,
                       ))
                     : null,
-                onChanged: null),
-            delete: () {
-              ref.read(todoStateProvider.notifier).deleteTask(task.id ?? 0);
+                onChanged: (val) async {
+                  await ref.read(todoStateProvider.notifier).markCompleted(
+                      task.id!,
+                      task.title,
+                      task.description,
+                      1,
+                      task.date,
+                      task.startTime,
+                      task.endTime);
+                }),
+            delete: () async {
+             await ref.read(todoStateProvider.notifier).deleteTask(task.id ?? 0);
             },
             editWidget: IconButton(
               onPressed: () {},
-              icon: const Icon(MaterialCommunityIcons.circle_edit_outline,
-              color: Colors.white,),
+              icon: const Icon(
+                MaterialCommunityIcons.circle_edit_outline,
+                color: Colors.white,
+              ),
             ),
           );
         });

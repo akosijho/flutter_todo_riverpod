@@ -49,8 +49,8 @@ class NextDayTasks extends ConsumerWidget {
               start: e.startTime,
               end: e.endTime,
               color: colors,
-              delete: () {
-                ref.read(todoStateProvider.notifier).deleteTask(e.id ?? 0);
+              delete: () async {
+                await ref.read(todoStateProvider.notifier).deleteTask(e.id ?? 0);
               },
               editWidget: IconButton(
                 onPressed: () {},

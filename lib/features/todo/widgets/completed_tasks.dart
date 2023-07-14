@@ -5,13 +5,14 @@ import 'package:flutter_todo_riverpod/common/utils/constants.dart';
 import 'package:flutter_todo_riverpod/common/widgets/gap.dart';
 import 'package:flutter_todo_riverpod/features/todo/controllers/todo/todo_provider.dart';
 import 'package:flutter_todo_riverpod/features/todo/widgets/todo_tile.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class CompletedTask extends ConsumerWidget {
   const CompletedTask({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<Task> tasksList = ref.read(todoStateProvider);
+    List<Task> tasksList = ref.watch(todoStateProvider);
     List<String> dates = ref.watch(todoStateProvider.notifier).last30();
     List<Task> completedTasksList = tasksList
         .where((element) =>
@@ -24,8 +25,6 @@ class CompletedTask extends ConsumerWidget {
             ),
         itemBuilder: (context, index) {
           final Task task = completedTasksList[index];
-          bool isCompleted =
-              ref.read(todoStateProvider.notifier).getStatus(task);
           Color color = ref.read(todoStateProvider.notifier).getRandomColor();
           return TodoTile(
             title: task.title,
@@ -33,20 +32,9 @@ class CompletedTask extends ConsumerWidget {
             description: task.description,
             start: task.startTime,
             end: task.endTime,
-            switcher: Switch(
-                value: isCompleted,
-                activeColor: AppConstants.kBlueLight,
-                activeTrackColor: AppConstants.kBlueLight,
-                inactiveThumbColor: Colors.transparent,
-                thumbIcon: isCompleted
-                    ? const MaterialStatePropertyAll(Icon(
-                        Icons.check,
-                        color: AppConstants.kBlueLight,
-                      ))
-                    : null,
-                onChanged: null),
-            delete: () {
-              ref.read(todoStateProvider.notifier).deleteTask(task.id ?? 0);
+            switcher: const Icon(AntDesign.checkcircle, color: AppConstants.kGreen,),
+            delete: () async {
+              await ref.read(todoStateProvider.notifier).deleteTask(task.id ?? 0);
             },
           );
         });

@@ -7,6 +7,7 @@ import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text_field.dart';
 import 'package:flutter_todo_riverpod/features/todo/controllers/todo/todo_provider.dart';
 import 'package:flutter_todo_riverpod/features/todo/pages/add_task.dart';
+import 'package:flutter_todo_riverpod/features/todo/widgets/completed_tasks.dart';
 import 'package:flutter_todo_riverpod/features/todo/widgets/todays_task.dart';
 import 'package:flutter_todo_riverpod/features/todo/widgets/next_day_task.dart';
 import 'package:flutter_todo_riverpod/features/todo/widgets/tomorrows_task.dart';
@@ -33,11 +34,6 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     ref.watch(todoStateProvider.notifier).refresh();
     return Scaffold(
@@ -58,25 +54,26 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                           text: 'Dashboard',
                           style: appStyle(
                               24, AppConstants.kLight, FontWeight.bold)),
-                      Container(
+                      GestureDetector(
+                        onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) {
+                                  return const AddTask();
+                                }));
+                          },
+                        child: Container(
                           height: 32.h,
                           width: 32.h,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                              color: AppConstants.kLight,
-                              borderRadius: BorderRadius.circular(9)),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (_) {
-                                    return AddTask();
-                                  }));
-                            },
-                            child: const Icon(
+                                color: AppConstants.kLight,
+                                borderRadius: BorderRadius.circular(9)),
+                          child: const Icon(
                               Icons.add,
                               color: AppConstants.kBkDark,
                             ),
-                          ))
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -196,6 +193,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
                         Container(
                           color: AppConstants.kBkLight,
                           height: AppConstants.kHeight * 0.3,
+                          child: const CompletedTask(),
                         )
                       ],
                     ),
