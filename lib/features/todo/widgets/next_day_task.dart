@@ -5,6 +5,7 @@ import 'package:flutter_todo_riverpod/common/utils/constants.dart';
 import 'package:flutter_todo_riverpod/common/widgets/xpansion_tile.dart';
 import 'package:flutter_todo_riverpod/features/todo/controllers/todo/todo_provider.dart';
 import 'package:flutter_todo_riverpod/features/todo/controllers/xpansion_provider.dart';
+import 'package:flutter_todo_riverpod/features/todo/pages/update_task.dart';
 import 'package:flutter_todo_riverpod/features/todo/widgets/todo_tile.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
@@ -53,7 +54,11 @@ class NextDayTasks extends ConsumerWidget {
                 await ref.read(todoStateProvider.notifier).deleteTask(e.id ?? 0);
               },
               editWidget: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return UpdateTask(e);
+                  }));
+                },
                 icon: const Icon(MaterialCommunityIcons.circle_edit_outline,
                   color: Colors.white,),
               ),
