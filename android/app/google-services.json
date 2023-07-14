@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "720765316344",
+    "project_id": "flutter-todo-riverpod",
+    "storage_bucket": "flutter-todo-riverpod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720765316344:android:eb36eda94ea94770c91f0d",
+        "android_client_info": {
+          "package_name": "com.riverpod2.todo.flutter_todo_riverpod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720765316344-ctncervrl8nag1ufdbtc6tlpf84p3sgt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz7fjwlNWla2_nevsSgBVjVLuWQSGzFLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720765316344-ctncervrl8nag1ufdbtc6tlpf84p3sgt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
