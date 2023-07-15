@@ -7,7 +7,10 @@ import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpPage extends StatelessWidget {
-  const OtpPage({super.key});
+  const OtpPage({super.key, required this.smsCodeId, required this.phone});
+
+  final String smsCodeId;
+  final String phone;
 
   @override
   Widget build(BuildContext context) {

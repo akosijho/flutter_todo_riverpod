@@ -56,7 +56,7 @@ class DBHelper {
   /*
   * Tasker
   * */
-  static Future<int> createUser(int isVerified, Task task) async {
+  static Future<int> createUser(int isVerified) async {
     /*
     * Creates local database
     * */

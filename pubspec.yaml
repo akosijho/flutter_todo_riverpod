@@ -52,6 +52,9 @@ dependencies:
   flutter_datetime_picker_plus: ^2.0.1
   intl: ^0.18.1
   firebase_core: ^2.14.0
+  firebase_auth: ^4.6.3
+  dartz: ^0.10.1
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   flutter_test:
