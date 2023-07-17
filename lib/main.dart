@@ -6,8 +6,8 @@ import 'package:flutter_todo_riverpod/common/models/user.dart';
 import 'package:flutter_todo_riverpod/common/routes/routes.dart';
 import 'package:flutter_todo_riverpod/common/utils/constants.dart';
 import 'package:flutter_todo_riverpod/features/auth/controllers/user_controller.dart';
+import 'package:flutter_todo_riverpod/features/auth/pages/notifications.dart';
 import 'package:flutter_todo_riverpod/features/onboarding/pages/onboarding.dart';
-import 'package:flutter_todo_riverpod/features/todo/pages/homepage.dart';
 import 'package:flutter_todo_riverpod/firebase_options.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -52,7 +52,7 @@ class MyApp extends ConsumerWidget {
                   useMaterial3: true,
                   colorScheme: darkScheme ?? defaultDarkColorScheme),
               onGenerateRoute: Routes.onGenereteRoute,
-              home: users.isEmpty ? const OnBoarding(): const MyHomePage(),
+              home: users.isEmpty ? const OnBoarding(): const Notfications(),
             );
           });
         });
