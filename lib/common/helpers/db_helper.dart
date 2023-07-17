@@ -68,7 +68,7 @@ class DBHelper {
     * Inserts and item into a table which return the id of the
     * inserted item
     * */
-    final id = await db.insert('user', data,
+    final id = await db.insert('users', data,
         conflictAlgorithm: ConflictAlgorithm.replace);
 
     return id;
