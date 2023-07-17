@@ -13,17 +13,15 @@ class Notfications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
       body: SafeArea(
         child: Stack(
           children: [
+            Container(),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.w,
+                  vertical: 20.h),
               child: Container(
-                height: AppConstants.kHeight * 0.7,
+                height: AppConstants.kHeight * 0.8,
                 width: AppConstants.kWidth,
                 decoration: BoxDecoration(
                   color: AppConstants.kBkLight,
@@ -34,12 +32,9 @@ class Notfications extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 48.w),
-                        child: MyText(
-                          text: "Reminder",
-                          style: appStyle(40, AppConstants.kLight, FontWeight.bold),
-                        ),
+                      MyText(
+                        text: "Reminder",
+                        style: appStyle(40, AppConstants.kLight, FontWeight.bold),
                       ),
                       const Gap(
                         height: 4,
@@ -88,11 +83,21 @@ class Notfications extends StatelessWidget {
               ),
             ),
             Positioned(
+              right: 08.w,
                 child: Image.asset(
               AppConstants.bell,
-              width: 72.w,
-              height: 72.h,
-            ))
+              width: 64.w,
+              height: 64.h,
+            )),
+            Positioned(
+                bottom: -AppConstants.kHeight*0.056,
+                left: 0,
+                right: 0,
+                child: Image.asset(
+                  AppConstants.notification,
+                  width: AppConstants.kWidth*0.8,
+                  height: AppConstants.kHeight*0.6,
+                ))
           ],
         ),
       ),
