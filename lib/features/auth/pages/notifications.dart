@@ -34,7 +34,7 @@ class Notfications extends StatelessWidget {
                     children: [
                       MyText(
                         text: "Reminder",
-                        style: appStyle(40, AppConstants.kLight, FontWeight.bold),
+                        style: appStyle(40, AppConstants.kLight, FontWeight.w400),
                       ),
                       const Gap(
                         height: 4,
