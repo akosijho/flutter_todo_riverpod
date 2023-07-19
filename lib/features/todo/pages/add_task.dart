@@ -3,6 +3,7 @@ import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
     as picker;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_todo_riverpod/common/helpers/notification_helper.dart';
 import 'package:flutter_todo_riverpod/common/models/task.dart';
 import 'package:flutter_todo_riverpod/common/utils/constants.dart';
 import 'package:flutter_todo_riverpod/common/widgets/app_style.dart';
@@ -23,6 +24,18 @@ class AddTask extends ConsumerStatefulWidget {
 class _AddTaskState extends ConsumerState<AddTask> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  late NotificationHelper notifier;
+  late NotificationHelper notifierController;
+
+  @override
+  void initState() {
+    notifier = NotificationHelper(ref: ref);
+    Future.delayed(const Duration(seconds: 0), (){
+      notifierController = NotificationHelper(ref: ref);
+    });
+    notifier.initializwNotification();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

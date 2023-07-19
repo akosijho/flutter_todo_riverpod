@@ -32,6 +32,8 @@ class AppConstants {
     Color(0xff79017b),
     Color(0xffffffff),
   ];
+
+  static const String defaultTimezone = "Asia/Philippines";
 }
 
 typedef EitherOr<T> = Either<String, T>;

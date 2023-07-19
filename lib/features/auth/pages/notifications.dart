@@ -5,8 +5,8 @@ import 'package:flutter_todo_riverpod/common/widgets/app_style.dart';
 import 'package:flutter_todo_riverpod/common/widgets/gap.dart';
 import 'package:flutter_todo_riverpod/common/widgets/my_text.dart';
 
-class Notfications extends StatelessWidget {
-  const Notfications({super.key, this.payload});
+class Notifications extends StatelessWidget {
+  const Notifications({super.key, this.payload});
 
   final String? payload;
 

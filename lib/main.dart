@@ -52,7 +52,7 @@ class MyApp extends ConsumerWidget {
                   useMaterial3: true,
                   colorScheme: darkScheme ?? defaultDarkColorScheme),
               onGenerateRoute: Routes.onGenereteRoute,
-              home: users.isEmpty ? const OnBoarding(): const Notfications(),
+              home: users.isEmpty ? const OnBoarding(): const Notifications(),
             );
           });
         });
