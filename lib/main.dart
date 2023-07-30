@@ -2,17 +2,20 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_todo_riverpod/common/helpers/notification_helper.dart';
 import 'package:flutter_todo_riverpod/common/models/user.dart';
 import 'package:flutter_todo_riverpod/common/routes/routes.dart';
 import 'package:flutter_todo_riverpod/common/utils/constants.dart';
 import 'package:flutter_todo_riverpod/features/auth/controllers/user_controller.dart';
-import 'package:flutter_todo_riverpod/features/auth/pages/notifications.dart';
 import 'package:flutter_todo_riverpod/features/onboarding/pages/onboarding.dart';
+import 'package:flutter_todo_riverpod/features/todo/pages/homepage.dart';
 import 'package:flutter_todo_riverpod/firebase_options.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-Future<void> main() async {
+main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // NotificationHelper().configureLocalTimeZone();
+  // NotificationHelper().initializwNotification();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -52,7 +55,7 @@ class MyApp extends ConsumerWidget {
                   useMaterial3: true,
                   colorScheme: darkScheme ?? defaultDarkColorScheme),
               onGenerateRoute: Routes.onGenereteRoute,
-              home: users.isEmpty ? const OnBoarding(): const Notifications(),
+              home: users.isEmpty ? const OnBoarding(): const MyHomePage(),
             );
           });
         });

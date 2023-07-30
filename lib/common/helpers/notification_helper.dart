@@ -10,18 +10,17 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationHelper {
-  final WidgetRef ref;
+  final WidgetRef? ref;
 
-  NotificationHelper({required this.ref});
+  NotificationHelper({this.ref});
 
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   String? selectedNotificationPayload;
 
   final BehaviorSubject<String?> selectedNotificationSubject = BehaviorSubject<String?>();
 
-  initializwNotification() async {
-    _configureSelectNotificationSubject();
-    await _configureLocalTimeZone();
+  // @pragma('vm:entry-point')
+  Future<void> initializwNotification() async {
     final DarwinInitializationSettings initializationSettingsIOS = DarwinInitializationSettings(
         requestAlertPermission: false,
         requestBadgePermission: false,
@@ -29,8 +28,11 @@ class NotificationHelper {
         onDidReceiveLocalNotification: onDidReceiveLocalNotification);
 
     const AndroidInitializationSettings androidInitializationSettings = AndroidInitializationSettings('task');
-    final InitializationSettings initializationSettings =
+    InitializationSettings initializationSettings =
         InitializationSettings(android: androidInitializationSettings, iOS: initializationSettingsIOS);
+
+    _configureSelectNotificationSubject();
+    await configureLocalTimeZone();
 
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveBackgroundNotificationResponse: (data) async {
@@ -41,7 +43,7 @@ class NotificationHelper {
     });
   }
 
-  void requrestIOSPermissions() {
+  requrestIOSPermissions() {
     flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
         ?.requestPermissions(
@@ -51,14 +53,14 @@ class NotificationHelper {
         );
   }
 
-  Future<void> _configureLocalTimeZone() async {
+  Future<void> configureLocalTimeZone() async {
     tz.initializeTimeZones();
     tz.setLocalLocation(tz.getLocation(AppConstants.defaultTimezone));
   }
 
   Future onDidReceiveLocalNotification(int id, String? title, String? body, String? payload) async {
     showDialog(
-        context: ref.context,
+        context: ref!.context,
         builder: (BuildContext context) => CupertinoAlertDialog(
               title: Text(title ?? ""),
               content: Text(body ?? ""),
@@ -96,7 +98,7 @@ class NotificationHelper {
       var title = paylaad!.split('|')[0];
       var body = paylaad.split('|')[1];
       showDialog(
-          context: ref.context,
+          context: ref!.context,
           builder: (BuildContext context) => CupertinoAlertDialog(
                 title: Text(title ?? ""),
                 content: Text(body ?? ""),

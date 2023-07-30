@@ -18,12 +18,18 @@ class DateState extends _$DateState{
 @riverpod
 class StartTime extends _$StartTime{
   @override
-  String build(){
+  String build() {
     return "";
   }
 
-  void setStart(String newState){
+  void setStart(String newState) {
     state = newState;
+  }
+
+  List<int> dates(DateTime startDate) {
+    DateTime now = DateTime.now();
+    Duration difference = startDate.difference(now);
+    return [difference.inDays, difference.inHours % 24, difference.inMinutes % 60, difference.inSeconds % 60];
   }
 }
 

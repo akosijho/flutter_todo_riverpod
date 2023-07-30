@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_todo_riverpod/common/helpers/notification_helper.dart';
 import 'package:flutter_todo_riverpod/common/utils/constants.dart';
 import 'package:flutter_todo_riverpod/common/widgets/app_style.dart';
 import 'package:flutter_todo_riverpod/common/widgets/gap.dart';
@@ -26,6 +27,18 @@ class _MyHomePageState extends ConsumerState<MyHomePage>
   late final TabController _tabController =
       TabController(length: 2, vsync: this);
   final TextEditingController _textEditingController = TextEditingController();
+  late NotificationHelper notifierHelper;
+  late NotificationHelper notifierController;
+
+  @override
+  void initState() {
+    notifierHelper = NotificationHelper(ref: ref);
+    Future.delayed(const Duration(seconds: 1), () {
+      notifierController = NotificationHelper(ref: ref);
+    });
+    notifierHelper.initializwNotification();
+    super.initState();
+  }
 
   @override
   void dispose() {

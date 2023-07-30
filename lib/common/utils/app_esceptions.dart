@@ -8,12 +8,11 @@ class AppExceptions {
     return Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 2,
         backgroundColor: AppConstants.kGreyDk,
         textColor: Colors.white,
         fontSize: 16.0
     );
   }
-
 }
